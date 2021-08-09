@@ -18,11 +18,12 @@ use App\Http\Controllers\PostController;
 //     return view('welcome');
 // });
 
-// Auth::routes();
+Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::redirect('/', '/posts');
+Route::redirect('/home', '/posts');
 
 // Items resource
 Route::resource('/posts', PostController::class);
