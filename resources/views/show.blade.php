@@ -4,7 +4,8 @@
     <section class="show container">
         <div class="row">
             <div class="col">
-                <h1 class="text-center py-5 m-0">{{ $post->title }}</h1>
+                <h1 class="text-center pt-5 m-0">{{ $post->title }}</h1>
+                <h5 class="text-center text-muted my-4"><em>by {{ $post->user->name }}</em></h5>
 
                 <img class="img-fluid" src="{{ $post->cover_image }}" alt="{{ $post->title }}">
 
@@ -15,7 +16,7 @@
                 <div class="actions d-flex justify-content-between">
                     <a href="/" class="btn btn-secondary">Back</a>
 
-                    @if (Auth::check())
+                    @if (Auth::check() && Auth::user()->name == $post->user->name)
                         <div class="d-flex justify-content-end">
                             <form action="/posts/{{ $post->id }}/edit" method="get">
                                 @csrf
