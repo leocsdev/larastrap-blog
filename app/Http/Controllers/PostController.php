@@ -16,8 +16,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        // get all records from posts table
-        $posts = Post::all();
+        // // get all records from posts table
+        // $posts = Post::all();
+
+        // // Get all posts with newest first
+        // $posts = Post::orderBy('created_at', 'DESC')->get();
+        
+        // Get all posts with newest first
+        $posts = Post::orderBy('created_at', 'DESC')->paginate(6);
 
         return view('home', ['posts' => $posts]);
     }

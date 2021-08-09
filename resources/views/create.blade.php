@@ -21,17 +21,17 @@
 
             <div class="form-group">
                 <label for="">Title</label>
-                <input type="text" name="title" class="form-control">
+                <input type="text" name="title" class="form-control" value={{ old('title') }}>
             </div>
 
             <div class="form-group">
                 <label for="">Cover Image Link</label>
-                <input type="text" name="cover_image" class="form-control">
+                <input type="text" name="cover_image" class="form-control" value={{ old('cover_image') }}>
             </div>
 
             <div class="form-group">
                 <label for="body">Content</label>
-                <textarea name="body" class="form-control" rows="20"></textarea>
+                <textarea name="body" class="form-control" rows="20">{{ old('body') }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Add</button>
