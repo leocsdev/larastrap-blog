@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
+use Session;
+
 class PostController extends Controller
 {
     /**
@@ -27,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -38,7 +40,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required', 
+        ]);
+
+        $post = new Post();
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->cover_image = $request->cover_image;
+
+        $post->save();
+
+        Session::flash('success_message', 'Blog post successsfully created.');
+
+        return redirect('/');
     }
 
     /**
