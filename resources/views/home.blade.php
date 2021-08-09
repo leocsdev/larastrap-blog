@@ -15,11 +15,15 @@
                 <p>{{ Session::get('success_message') }}</p>
             @endif
 
-            <div class="d-flex justify-content-end">
-                <a href="/posts/create">
-                    <h4>Create Blog Post</h4>
-                </a>
-            </div>
+            {{-- Show if auth user is logged in --}}
+            @if (Auth::check())
+                <div class="d-flex justify-content-end">
+                    <a href="/posts/create">
+                        <h4>Create Blog Post</h4>
+                    </a>
+                </div>
+            @endif
+
 
             <h1 class="text-center my-5">Blog Posts</h1>
 
