@@ -24,7 +24,6 @@
 
                         <form action="/posts/{{ $post->id }}" method="post" class="ml-3">
                             @csrf
-
                             @method('DELETE')
 
                             <!-- Button trigger modal -->
@@ -61,20 +60,6 @@
         </div><!-- row -->
     </section>
 @endsection
-
-{{-- OTHER LINKS --}}
-
-{{-- <form action="/posts/{{ $post->id }}/edit" method="get">
-    @csrf
-    <button type="submit">Edit</button>
-</form> --}}
-
-{{-- <form action="/posts/{{ $post->id }}" method="post">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Delete</button>
-</form> --}}
-
 
 {{-- <a href="{{ url()->previous() }}">
     <button>Cancel</button>
