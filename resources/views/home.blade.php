@@ -10,6 +10,11 @@
                 </a>
             </h3>
         @else
+            {{-- Session not working will check later --}}
+            @if (Session::has('success_message'))
+                <p>{{ Session::get('success_message') }}</p>
+            @endif
+
             <h2 class="text-center my-5">Blog Posts</h2>
 
             <div class="row justify-content-center">
