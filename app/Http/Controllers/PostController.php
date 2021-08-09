@@ -43,7 +43,7 @@ class PostController extends Controller
         // dd($request);
 
         $request->validate([
-            'title' => 'required',
+            'title' => ['required', 'unique:posts'],
             'body' => 'required', 
         ]);
 
