@@ -77,9 +77,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('edit', ['post' => $post]);
     }
 
     /**
@@ -89,9 +89,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        // dd($request);
+
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->cover_image = $request->cover_image;
+
+        $post->save();
+
+        Session::flash('success_message', 'Blog post successsfully updated.');
+
+        return redirect('/');
     }
 
     /**
