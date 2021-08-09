@@ -115,8 +115,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        // dd($post);
+
+        $post->delete();
+
+        Session::flash('success_message', 'Post was deleted.');
+
+        return redirect('/');
     }
 }
