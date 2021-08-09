@@ -4,7 +4,6 @@
     <section class="container">
         <h2 class="text-center my-4">Add Blog Post</h2>
 
-
         <form action="/posts" method="post">
             @csrf
 
@@ -36,6 +35,10 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Add</button>
+
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                Cancel
+            </a>
         </form>
     </section>
 
