@@ -3,27 +3,36 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// PUBLIC ROUTES
 
+// Redirected to show all posts, 
 Route::redirect('/', '/posts');
-Route::redirect('/home', '/posts');
 
-// Items resource
-Route::resource('/posts', PostController::class);
+// Show all posts
+Route::get('/posts', [PostController::class, 'index']);
+
+// Show single post
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+
+
+// PROTECTED ROUTES
+
+Route::prefix('/posts')->middleware('auth')->group( function  () {
+    // Add a post, show form
+    Route::get('/create', [PostController::class, 'create']);
+
+    // Save post
+    Route::post('/', [PostController::class, 'store']);
+
+    // Edit post
+    Route::get('/{post}/edit', [PostController::class, 'edit']);
+
+    // Update post
+    Route::put('/{post}', [PostController::class, 'update']);
+
+    // Delete post
+    Route::delete('/{post}', [PostController::class, 'destroy']);
+});
