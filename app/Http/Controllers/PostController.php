@@ -111,6 +111,8 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->cover_image = $request->cover_image;
 
+        $post->user_id = $request->user_id;
+
         $post->save();
 
         Session::flash('success_message', 'Blog post successsfully updated.');
