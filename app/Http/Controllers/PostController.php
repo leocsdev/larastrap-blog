@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+
+use Session;
 
 class PostController extends Controller
 {
@@ -13,7 +16,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // get all records from posts table
+        $posts = Post::all();
+
+        return view('home', ['posts' => $posts]);
     }
 
     /**
@@ -23,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -34,7 +40,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $request->validate([
+            'title' => ['required', 'unique:posts'],
+            'body' => 'required', 
+        ]);
+
+        $post = new Post();
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->cover_image = $request->cover_image;
+
+        $post->save();
+
+        Session::flash('success_message', 'Blog post successsfully created.');
+
+        return redirect('/');
     }
 
     /**
@@ -43,9 +66,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('show', ['post' => $post]);
     }
 
     /**
@@ -54,9 +77,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('edit', ['post' => $post]);
     }
 
     /**
@@ -66,9 +89,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        // dd($request);
+
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->cover_image = $request->cover_image;
+
+        $post->save();
+
+        Session::flash('success_message', 'Blog post successsfully updated.');
+
+        return redirect('/');
     }
 
     /**
@@ -77,8 +115,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        // dd($post);
+
+        $post->delete();
+
+        Session::flash('success_message', 'Post was deleted.');
+
+        return redirect('/');
     }
 }
