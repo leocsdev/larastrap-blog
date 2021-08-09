@@ -35,6 +35,8 @@
                 <textarea name="body" class="form-control" rows="20">{{ $post->body }}</textarea>
             </div>
 
+            <input type="text" name="user_id" hidden readonly value="{{ Auth::user()->id }}">
+
             <button type="submit" class="btn btn-primary">Update</button>
 
             <a href="{{ url()->previous() }}" class="btn btn-secondary">

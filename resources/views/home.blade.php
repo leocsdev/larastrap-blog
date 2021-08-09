@@ -36,6 +36,8 @@
                                 <div class="card-body">
                                     <div class="card-title">
                                         <h3 class="text-center">{{ $post->title }}</h3>
+
+                                        <h5 class="text-center mt-4"><em>by {{ $post->user->name }}</em></h5>
                                     </div>
                                 </div>
                             </div>
