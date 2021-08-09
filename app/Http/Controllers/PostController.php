@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 
 use Session;
 
@@ -58,6 +59,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->cover_image = $request->cover_image;
+
+        $post->user_id = $request->user_id;
 
         $post->save();
 
