@@ -6,7 +6,7 @@
             <h3>
                 No blog posts to show, please
                 <a href="/posts/create">
-                    <span>add a post</span>
+                    <span>create a post</span>
                 </a>
             </h3>
         @else
@@ -15,7 +15,13 @@
                 <p>{{ Session::get('success_message') }}</p>
             @endif
 
-            <h2 class="text-center my-5">Blog Posts</h2>
+            <div class="d-flex justify-content-end">
+                <a href="/posts/create">
+                    <h4>Create Blog Post</h4>
+                </a>
+            </div>
+
+            <h1 class="text-center my-5">Blog Posts</h1>
 
             <div class="row justify-content-center">
                 @foreach ($posts as $post)
