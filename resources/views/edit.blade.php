@@ -4,10 +4,8 @@
     <section class="container">
         <h2 class="text-center my-4">Edit Blog Post</h2>
 
-
         <form action="/posts/{{ $post->id }}" method="post">
             @csrf
-
             @method('PUT')
 
             @if ($errors->any())
@@ -38,6 +36,10 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
+
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                Cancel
+            </a>
         </form>
     </section>
 
